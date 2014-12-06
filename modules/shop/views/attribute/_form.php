@@ -19,13 +19,15 @@ use app\modules\shop\models\Enumgroup;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
+    <?php if(!$model->isNewRecord):?>
+      <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
+    <?php endif; ?>
 
-    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->all(),'id','name'),['prompt'=>'Выберите тип']) ?> ?>
+    <?= $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(Type::find()->all(),'id','name'),['prompt'=>'Выберите тип']) ?>
 
     <?= $form->field($model, 'datatype')->dropDownList(Attribute::getDataType(),['prompt'=>'Выберите тип']) ?>
 
-    <?= $form->field($model, 'enum_group_id')->dropDownList(ArrayHelper::map(Enumgroup::find()->all(),'id','name'),['prompt'=>'Выберите выпадабщий список']) ?> ?>
+    <?= $form->field($model, 'enum_group_id')->dropDownList(ArrayHelper::map(Enumgroup::find()->all(),'id','name'),['prompt'=>'Выберите выпадабщий список']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

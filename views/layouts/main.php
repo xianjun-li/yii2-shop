@@ -42,19 +42,23 @@ AppAsset::register($this);
                 'items' => [
                     [
                         'label' => 'Категории',
-                        'url' => '#'
+                        'url' => ['/shop/category/']
+                    ],
+                    [
+                        'label' => 'Типы',
+                        'url' => ['/shop/type/']
                     ],
                     [
                         'label' => 'Продукты',
-                        'url' => '#'
+                        'url' => ['/shop/product/']
                     ],
                     [
                         'label' => 'Атрибуты',
-                        'url' => '#'
+                        'url' => ['/shop/attribute/']
                     ],
                     [
                         'label' => 'Значения',
-                        'url' => '#'
+                        'url' => ['/shop/attributevalue/']
                     ],
                 ],
             ],

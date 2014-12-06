@@ -1,6 +1,8 @@
 <?php
 
 namespace app\modules\shop\models;
+
+use yii\behaviors\SluggableBehavior;
 use yii\helpers\ArrayHelper;
 
 use Yii;
@@ -43,7 +45,7 @@ class Attribute extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug'], 'required'],
+            [['title'], 'required'],
             [['type_id', 'enum_group_id'], 'integer'],
             [['title', 'slug', 'datatype'], 'string', 'max' => 255]
         ];
@@ -61,6 +63,18 @@ class Attribute extends \yii\db\ActiveRecord
             'type_id' => 'Type ID',
             'datatype' => 'Datatype',
             'enum_group_id' => 'Enum Group ID',
+        ];
+    }
+
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'title',
+                'slugAttribute' => 'slug',
+            ]
         ];
     }
 
@@ -92,14 +106,13 @@ class Attribute extends \yii\db\ActiveRecord
     public static function getDataType()
     {
         $listDataType = [
-              self::TYPE_TEXT=>'Текст',
-              self::TYPE_FLOAT=>'Float',
-              self::TYPE_INT=>'Целый',
-              self::TYPE_DATE=>'Время',
-              self::TYPE_BOOLEAN=>'Булево значение',
-              self::TYPE_ENUM=>'Выпадающий список'
+            self::TYPE_TEXT => 'Текст',
+            self::TYPE_FLOAT => 'Float',
+            self::TYPE_INT => 'Целый',
+            self::TYPE_DATE => 'Время',
+            self::TYPE_BOOLEAN => 'Булево значение',
+            self::TYPE_ENUM => 'Выпадающий список'
         ];
-        return $listDataType
-            ;
+        return $listDataType;
     }
 }
