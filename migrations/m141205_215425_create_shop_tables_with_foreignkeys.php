@@ -86,9 +86,19 @@ class m141205_215425_create_shop_tables_with_foreignkeys extends Migration
         $this->dropForeignKey('FK_product_category','eav_product');
         $this->dropForeignKey('FK_product_type','eav_product');
 
+        $this->dropForeignKey('FK_attribute_type','eav_attribute');
+        $this->dropForeignKey('FK_attribute_enumgroup','eav_attribute');
+
+        $this->dropForeignKey('FK_attribute_value_product','eav_attribute_value');
+        $this->dropForeignKey('FK_attribute_value_attribute','eav_attribute_value');
+
         $this->dropTable('eav_category');
         $this->dropTable('eav_type');
         $this->dropTable('eav_product');
+
+        $this->dropTable('eav_enumgroup');
+        $this->dropTable('eav_enumvalue');
+        $this->dropTable('eav_enumgroup_value');
 
         $this->dropTable('eav_attribute');
         $this->dropTable('eav_attribute_value');
